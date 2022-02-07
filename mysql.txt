@@ -1,0 +1,818 @@
+Pengenalan Database Management System
+DBMS adalah aplikasi yang digunakan untuk me-manage data
+Tanpa menggunakan DBMS, untuk me-manage data, seperti data produk, data customer, data penjualan, kita harus simpan dalam bentuk file (misal seperti ketika menggunakan Excel)
+DBMS biasanya berjalan sebagai aplikasi server yang digunakan untuk me-manage data, kita hanya tinggal memberi perintah ke DBMS untuk melakukan proses manajemen datanya, seperti menambah, mengubah, menghapus atau mengambil data
+Contoh DBMS yang populer seperti MySQL, PostgreSQL, MongoDB, Oracle, dan lain-lain
+
+Pengenalan Relational Database
+Ada banyak sekali jenis-jenis DBMS, seperti Relational Database, Document Database, Key-Value Database, dan lain-lain
+Namun yang masih populer dan kebanyakan orang gunakan adalah relational database
+Relational database cukup mudah dimengerti dan dipelajari karena kita sudah terbiasa menyimpan data dalam bentuk tabular (tabel) seperti di Microsoft Excel atau di Google Doc Spreadsheet
+Selain itu relational database memiliki perintah standard menggunakan SQL, sehingga kita mudah ketika ingin berganti-ganti aplikasi database (seperti MySQL, Oracle, PostgreSQL dan lain-lain)
+
+Database Client
+Database client adalah aplikasi yang digunakan untuk berkomunikasi dengan DBMS
+Biasanya DBMS sudah menyediakan database client sederhana yang bisa kita gunakan untuk berkomunikasi dengan DBMS agar lebih mudah
+Atau kita bisa membuat aplikasi untuk berkomunikasi dengan DBMS, misal membuat aplikasi database client menggunakan Java, PHP atau bahasa pemrograman lainnya
+
+Database File
+Mayoritas DBMS menyimpan datanya di file, walaupun ada beberapa database yang hanya menyimpan datanya di memory (RAM)
+Namun jangan berpikir file database yang disimpan berupa file seperti Excel atau CSV (Comma Separated Value), tapi jauh lebih kompleks
+Database File akan di optimasi oleh DBMS agar mempermudah DBMS dalam manajemen datanya, seperti insert, update, delete dan select
+Tiap DBMS biasanya memiliki cara masing-masing mengelola Database File nya, dan kita tidak perlu harus tau, karena yang kita perlu tahu hanya cara berkomunikasi ke DBMS
+
+SQL
+Structured Query Language
+Merupakan bahasa yang digunakan untuk mengirim perintah ke DBMS
+SQL adalah bahasa yang mudah karena hanya berisi instruksi untuk menyimpan, mengubah, menghapus atau mengambil data melalui DBMS
+Secara garis besar, semua perintah SQL di Relational Database itu hampir sama, namun biasanya tiap DBMS ada improvement yang membedakan hal-hal kecil dalam perintah SQL, namun secara garis besar perintahnya tetap sama
+
+MySQL
+MySQL adalah DBMS Relational OpenSource yang paling populer di dunia saat ini
+Tidak hanya OpenSource, MySQL juga gratis untuk digunakan
+MySQL pertama kali dibuat dan diperkenalkan tahun 1995 oleh David Axmark dan Michael Widenius
+MySQL sangat populer sekali terutama dikalangan programmer web PHP
+https://www.mysql.com/ 
+
+MySQL Community vs MySQL Enterprise
+Saat kita membuka halaman website resmi MySQL, jangan sampai salah download aplikasi MySQL
+MySQL menawarkan pilihan versi MySQL Enterprise, yaitu DBMS MySQL Yang berbayar
+MySQL yang versi gratis adalah MySQL Community
+MySQL Enterprise sendiri lebih ke versi improvement dari MySQL Community, biasanya menambahkan support dan monitoring
+Jika menggunakan MySQL Community, maka kita harus tangani semuanya sendiri, dari masalah dan monitoring MySQL nya
+
+MySQL vs MariaDB
+Tahun 2008 MySQL di akuisisi oleh perusahaan Sun Microsystem
+Namun Tahun 2009, Sun Microsystem diakuisisi oleh perusahaan Oracle (Pemilik DBMS Oracle)
+Hal ini menyebabkan 2 founder MySQL keluar dari MySQL dan membuat project baru bernama MariaDB
+MariaDB Sebenarnya fork dari MySQL, jadi apa yang bisa dilakukan di MySQL bisa dilakukan di MariaDB
+Sehingga sekarang jangan terlalu bingung jika ada MySQL dan MariaDB, karena sebenarnya itu dari source code yang sama, mungkin ada perbedaan kecil, namun secara garis besar sebenarnya tetap sama
+https://mariadb.org/ 
+
+Menginstall MySQL
+Menginstall MySQL banyak caranya, bisa download langsung dari halaman website resminya
+Atau bisa menggunakan aplikasi yang mem-bundle MySQL seperti XAMPP yang biasa digunakan oleh programmer PHP
+Jika sudah menginstall MySQL / MariaDB menggunakan XAMPP, tidak perlu menginstall lagi MySQL, karena jika bentrok, maka salah satu aplikasi MySQL nya tidak akan bisa jalan
+
+Menginstall MySQL di Mac
+Khusus untuk pengguna Mac, selain download installer MySQL di website resmi MySQL, kita juga bisa menggunakan homebrew untuk menginstall MySQL
+Cukup gunakan perintah : brew install mysql
+
+Menggunakan MySQL Client
+MySQL Client adalah aplikasi berbasis terminal yang disediakan oleh MySQL untuk berkomunikasi dengan MySQL Server
+Karena berbasis terminal, sehingga MySQL Client sangat cocok untuk kita gunakan misal ketika di server production, dimana kita menginstall MySQL di linux server yang berbasis terminal misal
+Kita tidak perlu menginstall MySQL Client secara terpisah, karena sudah tersedia di dalam aplikasi MySQL ketika kita menginstallnya
+
+MySQL Workbench
+MySQL Workbench adalah aplikasi MySQL Client berbasis Desktop yang disediakan oleh MySQL 
+MySQL Workbench adalah aplikasi gratis
+Aplikasi MySQL Workbench sangat mempermudah kita melakukan manajemen data di MySQL karena berbasis Desktop
+https://www.mysql.com/products/workbench/ 
+
+JetBrains DataGrip
+DataGrip adalah aplikasi Database Client yang berbayar
+DataGrip mendukung banyak sekali DBMS sehingga kita cukup menggunakan DataGrip untuk manajemen semua database yang kita gunakan
+Selain mendukung Relational DBMS, DataGrip juga mendukung DBMS yang NoSQL seperti MongoDB, Cassandra, dan lain-lain
+https://www.jetbrains.com/datagrip/ 
+
+Database
+Database adalah tempat kita menyimpan table di MySQL
+Jika kita misalkan table di MySQL adalah sebuah file, maka database adalah folder nya, dimana kita bisa menyimpan banyak table di sebuah database
+Biasanya pembuatan kita akan membuat satu database untuk satu jenis aplikasi, walaupun satu aplikasi bisa menggunakan lebih dari satu database, namun lumrahnya, satu aplikasi akan menggunakan satu database
+
+Melihat Semua Database di MySQL
+show databases;
+
+Membuat Database
+create database nama_database;
+
+Menghapus Database
+drop database nama_database;
+
+Memilih Database
+use nama_database;
+
+Tipe Data
+Saat kita membuat tabel di Excel, kita bisa menentukan tipe data apa yang kita masukkan ke tiap kolom di Excel
+Di MySQL, kita juga bisa menentukan tipe data tiap kolom yang kita buat di sebuah tabel
+Ada banyak sekali tipe data yang tersedia di MySQL, dari yang sederhana, sampai yang kompleks.
+Biasanya kita akan menggunakan tipe data sesuai dengan kebutuhan kolom yang perlu kita buat
+
+Tipe Data Number
+Secara garis besar, tipe data number di MySQL ada dua jenis;
+
+unsigned itu tidak boleh negatif
+
+Integer, atau tipe number bilangan bulat
+TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT
+
+Floating Point, atau tipe data number pecahan
+FLOAT, DOUBLE
+
+DECIMAL
+Selain Integer dan Floating Point, di MySQL terdapat tipe data DECIMAL
+Ini tipe data number khusus yang bisa ditentukan jumlah precision dan scale nya
+Number Attribute
+
+Tipe Data String
+Selain number, biasanya kita sering menyimpan data di dalam tabel dalam bentuk tulisan
+Tipe data ini namanya tipe data String atau Text
+Ada banyak tipe data String di MySQL
+
+CHAR dan VARCHAR
+Pertama tipe data String di MySQL adalah CHAR dan VARCHAR
+Kita bisa menentukan jumlah panjang maksimal karakter yang bisa ditampung oleh CHAR dan VARCHAR dengan menggunakan kurung buka lalu masukan jumlah maksimal karakter dan diakhiri kurung tutup
+Misal, CHAR(10) atau VARCHAR(10) artinya tipe data String dengan maksimal jumlah karakternya adalah 10 karakter
+Maksimum ukuran CHAR atau VARCHAR adalah 65535 karakter
+
+TEXT
+Selain CHAR dan VARCHAR, tipe data String yang lainnya adalah TEXT
+Berbeda dengan CHAR dan VARCHAR yang kita bisa tentukan panjang maksimum nya, TEXT tidak sudah memiliki maksimum  panjang nya
+Terdapat 4 tipe data TEXT
+TINYTEXT dengan maksimum 255 karakter (~256 bytes)
+TEXT dengan maksimum 65535 karakter ( ~64 kb)
+MEDIUMTEXT dengan maksimum 16777215 karakter (~16MB)
+dan LONGTEXT dengan maksimum 4294967295 karakter (~4GB)
+
+ENUM
+ENUM adalah tipe data String yang bisa kita tentukan pilihan pilihannya
+Misal kita bisa membuat 
+ENUM(‘Pria’, ‘Wanita’), artinya hanya bisa menerima data Pria atau Wanita
+ENUM(‘Programmer’, ‘Zaman’, ‘Now’), artinya hanya bisa menerima data Programmer, Zaman atau Now
+
+Tipe Data Date dan Time
+Selain tipe data Number dan String, biasanya kadang kita sering menyimpan data waktu atau tanggal
+Sebenarnya bisa kita gunakan String untuk menyimpan data waktu atau tanggal, namun itu tidak di rekomendasikan, karena akan menyulitkan kita ketika nanti butuh melakukan manipulasi waktu atau tanggal di MySQL
+https://stackoverflow.com/questions/409286/should-i-use-the-datetime-or-timestamp-data-type-in-mysql 
+ DATE
+YYYY-MM-DD
+2020-10-10
+DATETIME
+YYYY-MM-DD HH:MM:SS
+2020-10-10 10:10:10
+TIMESTAMP
+YYYY-MM-DD HH:MM:SS
+2020-10-10 10:10:10
+TIME
+HH:MM:SS
+10:10:10
+YEAR
+YYYY
+2020
+
+Tipe Data Boolean
+BOOLEAN adalah tipe data kebenaran, yang artinya datanya hanya ada dua jenis, benar atau salah
+Benar direpresentasikan dengan data TRUE, sedangkan salah direpresentasikan dengan data FALSE
+
+Dan Lain-Lain
+Sebenarnya masih banyak jenis tipe data yang lain yang didukung oleh MySQL, namun itu bisa kita pelajari jika memang ada kebutuhan spesifik
+Seperti misal tipe data BLOB, SPATIAL, JSON, SET dan lain-lain
+https://dev.mysql.com/doc/refman/8.0/en/data-types.html 
+
+Table
+Data biasanya disimpan di dalam tabel di MySQL
+Tiap tabel biasanya menyimpan satu jenis data, misal ketika kita membuat aplikasi toko online, kita akan membuat tabel barang, tabel pelanggan, tabel penjual, dan lain-lain
+Sebelum kita bisa memasukkan data ke tabel, kita wajib terlebih dahulu membuat tabelnya terlebih dahulu
+Dan tiap tabel yang kita buat, wajib ditentukan kolom-kolom nya, dan tipe data tiap kolom nya
+Kita juga bisa mengubah tabel yang sudah terlanjur dibuat, seperti menambah kolom baru, mengubah kolom yang sudah ada, atau menghapus kolom
+
+Storage Engines
+MySQL memiliki berbagai cara melakukan pengolahan data, hal ini disebut Storage Engines.
+Saat ini, yang biasa dan populer digunakan adalah InnoDB
+Untuk melihat storage engines apa saja yang terdapat di MySQL, kita bisa menggunakan perintah : SHOW ENGINES; 
+
+Melihat Table
+SHOW TABLES;
+
+Membuat Table
+mysql> CREATE TABLE barang(
+    -> id INT,
+    -> nama VARCHAR(100),
+    -> harga INT,
+    -> jumlah INT
+    -> ) ENGINE = InnoDB;
+
+Melihat Struktur Table
+DESCRIBE nama_tabel;
+DESC nama_tabel;
+SHOW CREATE TABLE nama_tabel;
+
+Mengubah Table
+mysql> alter table barang
+    -> add column deskripsi text;
+mysql> alter table barang
+    -> drop column salah;
+mysql> alter table barang
+    -> modify nama varchar(200) after deskripsi;
+mysql> alter table barang
+    -> modify nama varchar(200) first;
+
+Null Value
+Null adalah nilai ketika kita tidak mengisi data ke dalam kolom
+Secara default, saat kita membuat kolom, kolom tersebut bisa bernilai NULL, jika kita tidak ingin menerima nilai NULL, kita bisa menambahkan NOT NULL ketika pembuatan kolom nya
+mysql> alter table barang
+    -> modify id int not null;
+mysql> alter table barang
+    -> modify nama varchar(200) not null;
+
+Default Value
+Saat kita menyimpan data ke dalam tabel, lalu kita hanya menyimpan beberapa kolom (tidak semuanya), kolom yang tidak kita beri nilai secara default nilainya adalah NULL
+Jika kita ingin mengubah default value nya, kita bisa menambahkan perintah DEFAULT NILAI ketika pembuatan kolom nya
+Khusus tipe data DATETIME atau TIMESTAMP, jika kita ingin menggunakan default value dengan nilai waktu saat ini, kita bisa gunakan kata kunci CURRENT_TIMESTAMP
+mysql> alter table barang
+    -> modify jumlah int not null default 0;
+mysql> alter table barang
+    -> modify harga int not null default 0;
+mysql> alter table barang
+    -> add waktu_dibuat timestamp not null default current_timestamp;
+
+Membuat Ulang Table
+TRUNCATE nama_tabel;
+
+Menghapus Table
+DROP TABLE nama_tabel;
+
+Insert Data
+Sebelum kita meng memasukkan data kedalam tabel, tabel harus dibuat terlebih dahulu
+Kita bisa menyebutkan kolom mana yang ingin kita isi, jika kita tidak menyebutkan kolom nya, artinya kolom tersebut tidak akan kita isi, dan secara otomatis kolom yang tidak kita isi, nilainya akan NULL, kecuali memiliki DEFAULT VALUE
+Untuk memasukkan data kedalam tabel, kita bisa menggunakan perintah SQL yang bernama INSERT
+
+Membuat Tabel Produk
+mysql> create table products(
+    -> id varchar(10) not null,
+    -> name varchar(100) not null,
+    -> description text,
+    -> price int unsigned not null,
+    -> quantity int unsigned not null default 0,
+    -> created_at timestamp not null default current_timestamp
+    -> ) engine = innodb;
+
+Memasukkan Data
+mysql> insert into products(id, name, price, quantity)
+    -> values ('P0001', 'Mie Ayam Original', 15000, 100);
+mysql> insert into products(id, name, description, price, quantity)
+    -> values ('P0002', 'Mie Ayam Bakso', 'Mie Ayam Original + Bakso', 20000, 100);
+
+Memasukkan Beberapa Data Sekaligus
+mysql> insert into products(id, name, price, quantity)
+    -> values ('P0003', 'Mie Ayam Ceker', 20000, 100),
+    -> ('P0004', 'Mie Ayam Spesial', 25000, 100),
+    -> ('P0005', 'Mie Ayam Yamin', 15000, 100);
+
+Select Data
+Untuk mengambil data di tabel, kita bisa menggunakan SQL dengan kata kunci SELECT
+SELECT bisa digunakan untuk mengambil semua kolom yang ada di tabel, atau sebagian kolom saja
+Jika kita ingin mengambil semua kolom, kita bisa gunakan karakter * (bintang)
+Jika kita hanya ingin mengambil beberapa kolom saja, kita bisa sebutkan nama-nama kolom yang ingin kita ambil datanya
+
+Mengambil Data
+mysql> select * from products;
+mysql> select id, name, price, quantity from products;
+
+Primary Key
+Saat kita membuat tabel, idealnya tiap tabel memiliki Primary Key
+Primary key adalah sebuah kolom yang kita tunjuk sebagai id dari tabel tersebut
+Primary key adalah identitas untuk tiap baris data di dalam tabel
+Primary key harus unik, tidak boleh ada data dengan primary key yang sama
+Kita bisa menunjuk kolom yang akan kita jadikan primary key
+
+Primary Key di Multiple Column
+Kita bisa membuat primary key dengan kombinasi beberapa kolom
+Namun disarankan untuk tetap menggunakan satu kolom ketika membuat primary key
+Kecuali ada kasus khusus, seperti membuat tabel yang berelasi MANY TO MANY (yang nanti akan kita bahas)
+
+Menambah Primary Key di Tabel
+mysql> alter table products
+    -> add primary key(id);
+
+Where Clause
+Saat mengambil data menggunakan perintah SQL SELECT, kadang kita ingin melakukan pencarian data
+Misal, kita ingin mengambil data barang yang harganya 1jt, atau mengambil data barang yang quantity nya 0 (stok nya kosong)
+Hal ini bisa kita lakukan dengan WHERE clause setelah perintah SELECT
+
+Mencari Data
+mysql> select * from products where quantity = 100;
+
+Update Data
+Untuk mengubah data di tabel, kita bisa menggunakan perintah SQL UPDATE
+Saat menggunakan SQL UPDATE, kita harus memberi tahu data mana yang akan di update dengan WHERE clause
+Hati-hati ketika meng-update data di table, jika sampai WHERE clause nya salah, bisa-bisa kita malah meng-update seluruh data di tabel
+Untuk update, kita harus beritahu, kolom mana yang akan di update
+
+Menambah Kolom Kategori
+mysql> alter table products
+    -> add column category enum ('makanan', 'minuman', 'lain-lain') after name;
+
+Mengubah Satu Kolom
+mysql> update products
+    -> set category = 'makanan'
+    -> where id = 'P0001';
+
+Mengubah Beberapa Kolom
+mysql> update products
+    -> set category = 'makanan',
+    -> description = 'Mie Ayam Original + Ceker'
+    -> where id = 'P0003';
+
+Mengubah Dengan Value di Kolom
+mysql> update products
+    -> set price = price + 5000
+    -> where id = 'P0004';
+
+Delete Data
+Setelah kita tahu cara menambah, mengubah dan mengambil data di tabel, terakhir yang perlu kita ketahui adalah menghapus data di table
+Untuk menghapus data di table, kita bisa menggunakan perintah SQL DELETE
+Perintah SQL DELETE sama seperti UPDATE, kita perlu memberi tahu data mana yang akan di hapus dengan WHERE clause
+Dan hati-hati, jangan sampai salah menentukan WHERE clause, karena jika salah, bisa-bisa kita akan menghapus seluruh data di table
+
+Menghapus Data
+mysql> delete
+    -> from products
+    -> where id = 'P0009';
+
+Alias
+MySQL memiliki fitur untuk melakukan alias untuk kolom dan tabel
+Alias berguna jika kita ingin mengubah nama kolom atau nama tabel ketika melakukan SELECT data
+Mungkin saat ini alias untuk tabel tidak terlalu terlihat gunanya, tapi nanti ketika kita telah mempelajari tentang JOIN, maka fitur alias untuk tabel sangat berguna sekali
+
+Alias untuk Kolom
+mysql> select id as "kode",
+    -> name as "nama",
+    -> category as "kategori",
+    -> price as "harga",
+    -> quantity as "jumlah" 
+    -> from products;
+
+Alias untuk Tabel
+mysql> select p.id as "kode",
+    -> p.name as "nama",
+    -> p.category as "kategori",
+    -> p.price as "harga",
+    -> p.quantity as "jumlah" 
+    -> from products as p;
+
+Where Operator
+Sebelumnya di materi where clause kita sudah menggunakan operator = (sama dengan)
+Sebenarnya sangat banyak sekali operator yang bisa kita gunakan ketika menggunakan where clause
+Sekarang kita akan bahas satu per satu
+
+Mencari Data dengan Operator Perbandingan
+mysql> select * from products where quantity > 100;
+mysql> select * from products where quantity >= 100;
+
+AND dan OR Operator
+Kadang kita ingin mencari data dengan beberapa gabungan kondisi, kita bisa menggunakan operator AND dan OR
+AND dan OR digunakan untuk menggabungkan beberapa dua operator
+
+Mencari Data dengan Operator AND
+mysql> select * from products where quantity > 100 and price > 20000;
+mysql> select * from products where category = 'makanan' and price < 20000;
+
+Mencari Data dengan Operator OR
+mysql> select * from products where quantity > 100 OR price > 20000;
+
+Prioritas dengan Kurung ()
+mysql> select * from products where (category = 'makanan' or quantity > 500) and price > 20000;
+
+LIKE Operator
+LIKE operator adalah operator yang bisa kita gunakan untuk mencari sebagian data dalam String
+Ini cocok sekali ketika kita hanya ingin mencari sebagian kata dalam String
+Namun perlu diingat, operasi LIKE itu sangat lambat, oleh karena itu, tidak disarankan jika datanya sudah terlalu besar di tabel
+Operasi LIKE tidak case sensitive, jadi huruf besar dan kecil tidak akan berpengaruh
+
+Hasil Operator LIKE
+ LIKE Operator
+Hasil
+LIKE ‘b%’
+String dengan awalan b
+LIKE ‘%a’
+String dengan akhiran b
+LIKE ‘%eko%’
+String berisi eko
+NOT LIKE
+Tidak LIKE
+
+Mencari Menggunakan LIKE Operator
+mysql> select * from products where name like '%mie%';
+
+NULL Operator
+Untuk mencari data yang berisi NULL, kita tidak bisa menggunakan operator perbandingan = NULL.
+Ada operator khusus untuk mencari data NULL, yaitu menggunakan NULL operator
+IS NULL, artinya mencari yang NULL
+IS NOT NULL, artinya mencari yang tidak NULL
+
+Mencari Menggunakan NULL Operator
+mysql> select * from products where description is null;
+mysql> select * from products where description is not null;
+
+BETWEEN Operator
+Kadang kita ingin mencari data yang >= dan <= secara sekaligus
+Misal kita ingin mencari products yang harganya antara 10000 sampai 20000
+Untuk melakukan ini, kita bisa menggunakan WHERE price >= 10000 AND price <= 20000
+Namun ada operator BETWEEN yang bisa kita gunakan agar lebih sederhana
+Untuk kebalikannya, kita bisa gunakan NOT BETWEEN
+
+Mencari Menggunakan BETWEEN Operator
+mysql> select * from products where price between 10000 and 20000;
+mysql> select * from products where price not between 10000 and 20000;
+
+IN Operator
+Operator IN adalah operator untuk melakukan pencarian sebuah kolom dengan beberapa nilai.
+Misal kita ingin mencari products dengan category Makanan atau Minuman, maka kita bisa menggunakan operator IN
+
+Mencari Menggunakan IN Operator
+mysql> select * from products where category in ('makanan', 'minuman');
+mysql> select * from products where category not in ('makanan', 'minuman');
+
+Order By Clause
+Untuk mengurutkan data ketika kita menggunakan perintah SQL SELECT, kita bisa menambahkan ORDER BY clause
+ORDER BY clause digunakan untuk mengurutkan data berdasarkan kolom yang dipilih, dan jenis urutan (ASC atau DESC)
+Kita juga bisa mengurutkan tidak hanya terhadap satu kolom, tapi beberapa kolom
+
+Mengurutkan Data
+mysql> select id, category, name from products order by category;
+mysql> select id, category, price, name from products order by category asc
+    -> , price desc;
+
+Limit Clause
+Mengambil seluruh data di tabel bukanlah pilihan bijak, apalagi jika datanya sudah banyak sekali
+Kita bisa membatasi jumlah data yang diambil dalam SQL SELECT dengan LIMIT clause
+Selain membatasi jumlah data, kita juga bisa meng-skip sejumlah data yang tidak ingin kita lihat
+LIMIT biasanya digunakan saat melakukan paging di aplikasi kita
+
+Membatasi Hasil Query
+mysql> select * from products order by id limit 5;
+mysql> select * from products order by id limit 3;
+
+Skip Hasil Query
+mysql> select * from products order by id limit 0, 5;
+mysql> select * from products order by id limit 5, 5;
+mysql> select * from products order by id limit 10, 5;
+mysql> select * from products order by id limit 15, 5;
+
+Select Distinct Data
+Saat melakukan query dengan SELECT, kadang kita mendapatkan data yang duplikat
+Misal kita ingin melihat semua kategori di tabel products, maka otomatis hasil query SELECT akan duplikat, karena banyak sekali produk dengan kategori yang sama
+Jika kita ingin menghilangkan data-data duplikat tersebut , kita bisa menggunakan SELECT dengan tambahan DISTINCT sebelum nama kolom nya
+
+Menghilangkan Data Duplikat
+mysql> select distinct category from products;
+
+Numeric Function
+MySQL memiliki banyak sekali fitur untuk manipulasi data angka
+Hal ini memudahkan kita untuk memanipulasi data angka
+Secara garis besar, fitur ini dibagi menjadi dua, Arithmetic Operator dan Mathematical Function
+
+Menggunakan Arithmetic Operator
+mysql> select 10, 10, 10 * 10 as hasil;
+mysql> select id, name, price, price div 1000 as 'Price in K' from products;
+
+Mathematical Function
+Selain arithmetic operator, ada juga mathematical function
+Ini adalah kumpulan function yang terdapat di MySQL yang bisa kita gunakan sebagai fungsi-fungsi matematika
+Ada banyak sekali, dan tidak bisa kita bahas semua
+https://dev.mysql.com/doc/refman/8.0/en/mathematical-functions.html 
+
+Menggunakan Mathematical Function
+mysql> select id, cos(price), sin(price), tan(price) from products;
+mysql> select id, name, price from products where price div 1000 > 15;
+
+Auto Increment
+Kadang kita butuh angka yang berurut untuk membuat primary key, misal 1, 2, 3, dan seterusnya.
+Untuk melakukan hal ini secara manual bukanlah hal bijak, apalagi jika aplikasi yang kita buat diakses oleh banyak orang secara bersamaan
+MySQL memiliki fitur yang bernama auto increment, fitur ini bisa kita gunakan untuk menandai bahwa suatu primary key datanya diisi secara otomatis dari angka terakhir + 1
+Dengan menggunakan auto increment, kita tidak perlu lalu memasukkan data primary key, ini akan otomatis dibuat oleh MySQL
+
+Membuat Tabel dengan Auto Increment
+mysql> create table admin (
+    -> id int not null auto_increment,
+    -> first_name varchar(100) not null,
+    -> last_name varchar(100) not null,
+    -> primary key (id) )
+    -> engine = InnoDB;
+
+Memasukkan Data Tanpa Id
+mysql> insert into admin(first_name, last_name)
+    -> values
+    -> ('Adi', 'Putra'),
+    -> ('Budi', 'Nugraha'),
+    -> ('Joko', 'Morro');
+mysql> select * from admin order by id;
+mysql> delete from admin where id = 3;
+mysql> select * from admin order by id;
+mysql> insert into admin(first_name, last_name) values ('Joko', 'Morro');
+mysql> select * from admin order by id;
+
+Melihat Id Terakhir
+mysql> select last_insert_id();
+
+String Function
+Sama seperti number, di MySQL juga banyak menyediakan function untuk tipe data String
+Ada banyak sekali function-function yang bisa kita gunakan
+https://dev.mysql.com/doc/refman/8.0/en/string-functions.html 
+
+Menggunakan String Function
+mysql> select id,
+    -> lower(name) as 'Name Lower',
+    -> upper(name) as 'Name Upper',
+    -> length(name) as 'Name Length' 
+    -> from products;
+
+Date dan Time Function
+MySQL juga menyediakan banyak sekali function yang bisa kita gunakan untuk mengolah data tipe Date dan Time
+https://dev.mysql.com/doc/refman/8.0/en/date-and-time-functions.html 
+
+Flow Control Function
+MySQL memiliki fitur flow control function
+Ini mirip IF ELSE di bahasa pemrograman
+Tapi ingat, fitur ini tidak se kompleks yang dimiliki bahasa pemrograman
+https://dev.mysql.com/doc/refman/8.0/en/flow-control-functions.html 
+
+Menggunakan Control Flow CASE 
+mysql> use belajar_mysql;
+Database changed
+mysql> select id, category,
+    -> case category
+    -> when 'makanan' then 'enak'
+    -> when 'minuman' then 'segar'
+    -> else 'apa itu?'
+    -> end as 'Category'
+    -> from products;
+
+Menggunakan Control Flow IF
+mysql> select id, price,
+    -> if (price <= 15000, 'Murah', if ( price <= 20000, 'Mahal', 'Mahal Banget')) as 'Mahal?'
+    -> from products;
+
+Menggunakan Control Flow IFNULL
+mysql> select id, name,
+    -> ifnull (description, 'Kosong')
+    -> from products;
+
+Aggregate Function
+MySQL mendukung function-function untuk melakukan aggregate
+Misal, kita ingin melihat harga paling mahal di tabel product, atau harga termurah, atau rata-rata harga produk, atau total jumlah data di tabel, dan lain-lain
+https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html 
+
+Menggunakan Aggregate Function
+mysql> select count(id) as 'Total product' from products;
+mysql> select max(price) as 'Produk termahal' from products;
+mysql> select min(price) as 'Produk termurah' from products;   
+mysql> select avg(price) as 'Rata -rata harga' from products;
+mysql> select sum(quantity) as 'Total Stock' from products;
+
+GROUP BY
+Kadang saat melakukan aggregate, kita ingin datanya di grouping berdasarkan kriteria tertentu
+Misal kita ingin melihat rata-rata harga product, tapi ingin per category
+Atau kita ingin melihat total semua product, tapi per category
+Hal ini bisa dilakukan di MySQL dengan menggunakan GROUP BY clause
+GROUP BY clause ini hanya bisa digunakan jika kita menggunakan aggregate function
+https://dev.mysql.com/doc/refman/8.0/en/group-by-modifiers.html 
+
+Menggunakan GROUP BY
+mysql> select count(id) as 'Total product', category from products group by category;
+mysql> select max(price) as 'Produk termahal', category from products group by category;
+mysql> select min(price) as 'Produk termurah', category from products group by category;
+mysql> select avg(price) as 'Rata -rata harga', category from products group by category;
+mysql> select sum(quantity) as 'Total Stock', category from products group by category;
+
+HAVING Clause
+Kadang kita ingin melakukan filter terhadap data yang sudah kita grouping
+Misal kita ingin menampilkan rata-rata harga per kategori, tapi yang harganya diatas 10.000 misalnya
+Jika menggunakan WHERE di SELECT, hal ini tidak bisa dilakukan
+Untuk memfilter hasil aggregate function, kita harus menggunakan HAVING clause
+
+Menggunakan HAVING Clause
+mysql> select count(id) as 'total', category from products group by category having total > 5 ;
+
+Constraint
+Di MySQL, kita bisa menambahkan constraint untuk menjaga data di tabel tetap baik
+Constraint sangat bagus ditambahkan untuk menjaga terjadi validasi yang salah di program kita, sehingga data yang masuk ke database tetap akan terjaga
+
+Unique Constraint
+Unique constraint adalah constraint yang memastikan bahwa data kita tetap unique
+Jika kita mencoba memasukkan data yang duplikat, maka MySQL akan menolak data tersebut
+
+Membuat Table dengan Unique Constraint
+mysql> create table customers
+    -> (
+    -> id int not null auto_increment,
+    -> email varchar(100) not null,
+    -> first_name varchar(100) not null,
+    -> last_name varchar(100),
+    -> primary key (id),
+    -> unique key email_unique (email)
+    -> )
+    -> engine = InnoDB;
+
+Menambah/Menghapus Unique Constraint
+mysql> alter table customers
+    -> drop constraint email_unique;
+mysql> alter table customers
+    -> add constraint email_unique unique (email);
+mysql> insert into customers(email, first_name, last_name)
+    -> values ('adi@gmail.com', 'adi', 'putra');
+mysql> insert into customers(email, first_name, last_name) values ('ida@gmail.com', 'ida', 'putri');
+
+Check Constraint
+Check constraint adalah constraint yang bisa kita tambahkan kondisi pengecekannya
+Ini cocok untuk mengecek data sebelum dimasukkan ke dalam database
+Misal kita ingin memastikan bahwa harga harus diatas 1000 misal
+Maka kita bisa menggunakan check constraint
+
+Menambah/Menghapus Check Constraint
+mysql> alter table products add constraint price_check check (price >= 1000);
+mysql> alter table products drop constraint price_check;
+
+Index
+Secara default, MySQL akan menyimpan data di dalam disk seperti tabel biasanya
+Hal ini menyebabkan, ketika kita mencari data, maka MySQL akan melakukan pencarian dari baris pertama sampai terakhir, yang artinya semakin banyak datanya, maka akan semakin lambat proses pencarian datanya
+Saat kita membuat index, MySQL akan menyimpan data dalam struktur data B-Tree : https://en.wikipedia.org/wiki/B-tree 
+Tidak hanya akan mempermudah kita saat melakukan pencarian, index juga akan mempermudah kita ketika melakukan pengurutan menggunakan ORDER BY
+https://dev.mysql.com/doc/refman/8.0/en/optimization-indexes.html 
+
+Cara Kerja Index
+Kita bisa membuat lebih dari satu index di table, dan setiap kita membuat index, kita bisa membuat index untuk beberapa kolom sekaligus
+Misal kita membuat index
+(col1, col2, col3)
+Artinya kita punya kemampuan untuk mencari lebih menggunakan index untuk kombinasi query di (col1), (col1, col2) dan (col1, col2, col3)
+
+Efek Samping Membuat Index
+Index mungkin akan mempercepat untuk proses pencarian dan query data
+Namun, saat kita membuat index, artinya MySQL akan melakukan proses update data di index tiap kali kita menambah, mengubah atau menghapus data di table
+Artinya Index membuat proses pencarian dan query lebih cepat, tapi memperlambat proses manipulasi data
+Oleh karena itu, kita harus bijak saat membuat index
+
+Tidak Perlu Index
+Saat kita membuat PRIMARY KEY dan UNIQUE constraint, kita tidak perlu menambahkan lagi index
+Hal ini dikarenakan MySQL secara otomatis akan menambahkan index pada kolom PRIMARY KEY dan UNIQUE constraint
+
+Membuat Table dengan Index
+mysql> create table sellers
+    -> (
+    -> id int not null auto_increment,
+    -> name varchar(100) not null,
+    -> name2 varchar(100),
+    -> name3 varchar(100),
+    -> email varchar(100) not null,
+    -> primary key (id),
+    -> unique key email_unique (email),
+    -> index name_index (name),
+    -> index name2_index (name2),
+    -> index name3_index (name3),
+    -> index name1_name2_name3_index (name, name2, name3)
+    -> ) engine = InnoDB;
+mysql> select * from sellers where name = 'X';
+mysql> select * from sellers where name2 = 'X';
+mysql> select * from sellers where name = 'X' and name2 = 'X';
+mysql> select * from sellers where name = 'X' and name2 = 'X' and name3 = 'X';
+
+Menambah/Menghapus Index
+mysql> alter table sellers
+    -> drop index name_index;
+mysql> alter table sellers
+    -> add index name_index (name);
+
+Masalah dengan LIKE operator
+Kadang kita ingin mencari sebuah kata dalam tabel, dan biasanya kita akan menggunakan LIKE operator
+Operasi yang dilakukan LIKE operator adalah dengan cara mencari seluruh data di tabel dari baris pertama sampai terakhir, hal ini membuat operasi LIKE sangat lambat
+Menambah index di tabel juga tidak akan membantu, karen LIKE operator tidak menggunakan index
+MySQL menyediakan fitur Full Text Search jika ada kasus kita ingin melakukan hal ini
+
+Full-Text Search
+Full-Text Search memungkinkan kita bisa mencari sebagian kata di kolom dengan tipe data String
+Ini sangat cocok ketika pada kasus kita memang membutuhkan pencarian yang tidak hanya sekedar operasi = (equals, sama dengan)
+https://dev.mysql.com/doc/refman/8.0/en/fulltext-search.html 
+
+Menambah/Menghapus Full-Text Search
+mysql> alter table products 
+    -> add fulltext product_fulltext (name, description);
+
+mysql> alter table products 
+    -> drop index product_fulltext;
+
+Mode Full-Text Search
+MySQL menyediakan beberapa mode untuk melakukan pencarian di Full-Text Search, kita bisa memilihnya sesuai kebutuhan kita
+Natural Language, yaitu mencari seperti bahasa natural (per kata) : https://dev.mysql.com/doc/refman/8.0/en/fulltext-natural-language.html 
+Boolean, yaitu mencari dengan kemampuan mengandung kata (+) atau tidak mengandung kata (-) dan lain-lain : https://dev.mysql.com/doc/refman/8.0/en/fulltext-boolean.html 
+Query Expansion, yaitu mencari seperti natural language, namun melakukan dua kali pencarian, pencarian pertama menggunakan natural language, pencarian kedua melakukan pencarian dari kedekatan hasil pertama, misal kita mencari kata “bakso”, lalu ternyata di dalam “bakso” ada kata “mie”, maka kemungkinan query kedua akan mencari kata “mie” juga : https://dev.mysql.com/doc/refman/8.0/en/fulltext-query-expansion.html 
+
+Mencari dengan Natural Language Mode
+mysql> select * from products where match(name, description) against('ayam' in natural language mode);
+
+Mencari dengan Boolean Mode
+mysql> select * from products where match(name, description) against('+ayam -bakso' in boolean mode);
+
+Mencari dengan Query Expansion Mode
+mysql> select * from products where match(name, description) against('bakso' with query expansion);
+
+Table Relationship
+Dalam Relational DBMS, salah satu fitur andalan nya adalah table relationship. Yaitu relasi antar tabel
+Kita bisa melakukan relasi dari satu tabel ke tabel lain.
+Dalam kehidupan nyata pun pasti kita akan sering membuat relasi antar tabel
+Misal, saat kita membuat aplikasi penjualan, di laporan penjualan pasti ada data barang. Jika di tabel artinya tabel penjualan akan berelasi dengan tabel barang
+Misal dalam aplikasi kampus, tabel mahasiswa akan berelasi dengan tabel mata kuliah, dan tabel dosen
+Dan lain-lain
+
+Foreign Key
+Saat membuat relasi tabel, biasanya kita akan membuat sebuah kolom sebagai referensi ke tabel lainnya
+Misal saat kita membuat tabel penjualan, di dalam tabel penjualan, kita akan menambahkan kolom id_produk sebagai referensi ke tabel produk, yang berisi primary key di tabel produk
+Kolom referensi ini di MySQL dinamakan Foreign Key
+Kita bisa menambah satu satu lebih foreign key ke dalam sebuah tabel
+Membuat foreign key sama seperti membuat kolom biasanya, hanya saja kita perlu memberi tahu MySQL bahwa itu adalah foreign key ke tabel lain
+
+Membuat Table dengan Foreign Key
+mysql> create table wishlist (
+    -> id int not null auto_increment,
+    -> id_product varchar(10) not null,
+    -> description text,
+    -> primary key (id),
+    -> constraint fk_wishlist_product
+    -> foreign key (id_product) references products (id)
+    -> )
+    -> engine = InnoDB;
+
+Menambah/Menghapus Foreign Key
+mysql> alter table wishlist
+    -> drop constraint fk_wishlist_product;
+
+mysql> alter table wishlist
+    -> add constraint fk_wishlist_product
+    -> foreign key (id_product) references products (id);
+
+Keuntungan Menggunakan Foreign Key
+Foreign key memastikan bahwa data yang kita masukkan ke kolom tersebut harus tersedia di tabel reference nya
+Selain itu saat kita menghapus data di tabel reference, MySQL akan mengecek apakah id nya digunakan di foreign key di tabel lain, jika digunakan, maka secara otomatis MySQL akan menolak proses delete data di tabel reference tersebut
+
+Ketika Menghapus Data Berelasi
+Seperti yang sebelumnya dibahas, ketika kita menghapus data yang berelasi, maka secara otomatis MySQL akan menolak operasi delete tersebut
+Kita bisa mengubah fitur ini jika kita mau, ada banyak hal yang bisa dilakukan ketika data berelasi dihapus, defaultnya memang akan ditolak (RESTRICT)
+
+Behavior Foreign Key
+ Behavior
+ON DELETE
+ON UPDATE
+RESTRICT
+Ditolak
+Ditolak
+CASCADE
+Data akan dihapus
+Data akan ikut diubah
+NO ACTION
+Data dibiarkan
+Data dibiarkan
+SET NULL
+Diubah jadi NULL
+Diubah jadi NULL
+
+Mengubah Behavior Menghapus Relasi
+mysql> alter table wishlist
+    -> add constraint fk_wishlist_product
+    -> foreign key (id_product) references products (id)
+    -> on delete cascade on update cascade;
+
+Join
+MySQL mendukung query SELECT langsung ke beberapa tabel secara sekaligus
+Namun untuk melakukan itu, kita perlu melakukan JOIN di SQL SELECT yang kita buat
+Untuk melakukan JOIN, kita perlu menentukan tabel mana yang merupakan referensi ke tabel lain
+Join cocok sekali dengan foreign key, walaupun di MySQL tidak ada aturan kalau JOIN harus ada foreign key
+Join di MySQL bisa dilakukan untuk lebih dari beberapa tabel
+Tapi ingat, semakin banyak JOIN, maka proses query akan semakin berat dan lambat, jadi harap bijak ketika melakukan JOIN
+Idealnya kita melakukan JOIN jangan lebih dari 5 tabel, karena itu bisa berdampak ke performa query yang lambat
+
+Melakukan JOIN Table
+mysql> select * from wishlist join products on (wishlist.id_product = products.id);
+mysql> select w.id as id_wishlist, 
+    -> p.id as id_product,
+    -> p.name as product_name,
+    -> w.description as wishlist_description 
+    -> from wishlist as w
+    -> join products as p on (w.id_product = p.id);
+
+Melakukan JOIN Multiple Table
+mysql> select customers.email, products.id, products.name, wishlist.description
+    -> from wishlist
+    -> join products on (products.id = wishlist.id_product)
+    -> join customers on (customers.id = wishlist.id_customer);
+
+One to One Relationship
+
+Jenis-Jenis Relasi Tabel
+Sekarang kita sudah tau untuk melakukan relasi antar tabel, kita bisa menggunakan FOREIGN KEY
+Dan untuk melakukan SELECT beberapa tabel, kita bisa menggunakan JOIN
+Dalam konsep relasi, ada banyak jenis-jenis relasi antar tabel
+Sekarang kita akan bahas dari yang pertama yaitu One to One relationship
+
+One to One Relationship
+One to One relationship adalah relasi antar tabel yang paling sederhana
+Artinya tiap data di sebuah tabel hanya boleh berelasi ke maksimal 1 data di tabel lainnya
+Tidak boleh ada relasi lebih dari 1 data
+Contoh misal, kita membuat aplikasi toko online yang terdapat fitur wallet, dan 1 customer, cuma boleh punya 1 wallet
+
+Membuat One to One Relationship
+Cara membuat One to One relationship cukup mudah
+Kita bisa membuat kolom foreign key, lalu set kolom tersebut menggunakan UNIQUE KEY, hal ini dapat mencegah terjadi data di kolom tersebut agar tidak duplikat
+Atau cara lainnya, kita bisa membuat tabel dengan primary key yang sama, sehingga tidak butuh lagi kolom untuk FOREIGN KEY
+
+
+
