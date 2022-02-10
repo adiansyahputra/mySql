@@ -962,6 +962,62 @@ Jika ada data di tabel pertama yang tidak memiliki relasi di table kedua ataupun
 Ini adalah default JOIN di MySQL
 Jika kita menggunakan JOIN seperti yang sudah kita praktekan sebelumnya, sebenarnya itu akan melakukan INNER JOIN
 
+mysql> insert into categories(id, name)
+    -> values 
+    -> ('C0004','Oleh-Oleh'),
+    -> ('C0005','Gadget';
+
+mysql> insert into products(id, name, price, quantity)
+    -> values 
+    -> ('X0001','X Satu',25000,200),
+    -> ('X0002','X Dua',10000,300),
+    -> ('X0003','X Tiga',15000,500);
+
+Melakukan Inner Join
+mysql> select * from categories
+    -> inner join products on (products.id_category = categories.id);
+
+Left Join
+LEFT JOIN adalah mekanisme JOIN seperti INNER JOIN, namun semua data di table pertama akan diambil juga
+Jika ada yang tidak memiliki relasi di table kedua, maka hasilnya akan NULL
+
+Melakukan Left Join
+mysql> select * from categories
+    -> left join products on (products.id_category = categories.id);
+
+Right Join
+RIGHT JOIN adalah mekanisme JOIN seperti INNER JOIN, namun semua data di table kedua akan diambil juga
+Jika ada yang tidak memiliki relasi di table pertama, maka hasilnya akan NULL
+
+Melakukan Right Join
+mysql> select * from categories right join products on (products.id_category = categories.id);
+
+Cross Join
+CROSS JOIN adalah salah satu JOIN yang sangat jangan sekali digunakan
+CROSS JOIN adalah melakukan join dengan cara mengkalikan data di tabel pertama dengan dada di table kedua
+Artinya jika ada 5 data di tabel pertama, dan 5 data di tabel kedua, akan menghasilkan 25 kombinasi data (5 x 5)
+Sekali lagi perlu diingat, ini adalah JOIN yang sangat jarang sekali digunakan
+
+Menggunakan Cross Join
+mysql> select * from categories
+    -> cross join products;
+
+Membuat Tabel Perkalian
+mysql> create table numbers
+    -> (
+    -> id int not null,
+    -> primary key (id)
+    -> ) engine = InnoDB;
+
+mysql> insert into numbers(id) 
+    -> values
+    -> (1), (2), (3), (4), (5), (6), (7), (8), (9), (10);
+
+Cross Join Tabel Perkalian
+mysql> select numbers1.id, numbers2.id, (numbers1.id * numbers2.id)
+    -> from numbers as numbers1 cross join numbers as numbers2
+    -> order by numbers1.id, numbers2.id;
+
 
 
 
