@@ -1084,5 +1084,113 @@ mysql> select email from customers
 
 mysql> select emails.email, count(emails.email) from (select email from customers union all select email from guestbooks) as emails group by emails.email;
 
+INTERSECT
+INTERSECT adalah operasi menggabungkan dua query, namun yang diambil hanya data yang terdapat pada hasil query pertama dan query kedua
+Data yang tidak hanya ada di salah satu query, kan dihapus di hasil operasi INTERSECT 
+Data nya muncul tidak dalam keadaan duplikat
+Sayangnya, MySQL tidak memiliki operator INTERSECT, dengan demikian untuk melakukan operasi INTERSECT, kita harus lakukan secara manual menggunakan JOIN atau SUBQUERY
+
+Melakukan Query INTERSECT
+mysql> select distinct email from customers where email in(select distinct email from guestbooks);
+mysql> select distinct customers.email from customers 
+    -> inner join guestbooks on (guestbooks.email = customers.email);
+
+MINUS
+MINUS adalah operasi dimana query pertama akan dihilangkan oleh query kedua
+Artinya jika ada data di query pertama yang sama dengan data yang ada di query kedua, maka data tersebut akan dihapus dari hasil query MINUS
+Sayang nya, di MySQL juga tidak ada operator MINUS, namun hal ini bisa kita lakukan menggunakan JOIN
+
+Melakukan Query MINUS
+mysql> select distinct customers.email, guestbooks.email from customers left join guestbooks on (customers.email = guestbooks.email) where guestbooks.email is null;
+
+Transaction
+Kenapa Butuh Transaction?
+Saat membuat aplikasi berbasis database, jarang sekali kita akan melakukan satu jenis perintah SQL per aksi yang dibuat aplikasi
+Contoh, ketika membuat toko online, ketika customer menekan tombol Pesan, banyak yang harus kita lakukan, misal
+Membuat data pesanan di tabel order
+Membuat data detail pesanan di tabel order detail
+Menurunkan quantity di tabel produk
+Dan yang lainnya
+Artinya, bisa saja dalam satu aksi, kita akan melakukan beberapa perintah sekaligus
+Jika terjadi kesalahan di salah satu perintah, harapannya adalah perintah-perintah sebelumnya dibatalkan, agar data tetap konsisten
+
+Database Transaction
+Database transaction adalah fitur di DBMS dimana kita bisa memungkinan beberapa perintah dianggap menjadi sebuah kesatuan perintah yang kita sebut transaction
+Jika terdapat satu saja proses gagal di transaction, maka secara otomatis perintah-perintah sebelumnya akan dibatalkan
+Jika sebuah transaction sukses, maka semua perintah akan dipastikan sukses
+
+Transaction di MySQL
+ Perintah
+Keterangan
+START TRANSACTION
+Memulai proses transaksi, proses selanjutnya akan dianggap transaksi sampai perintah COMMIT atau ROLLBACK
+COMMIT
+Menyimpan secara permanen seluruh proses transaksi
+ROLLBACK
+Membatalkan secara permanen seluruh proses transaksi
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into guestbooks (email, title, content)
+    -> values
+    -> ('contoh@gmail.com','Contoh','Contoh'),
+    -> ('contoh@gmail.com','Contoh','Contoh'),
+    -> ('contoh3@gmail.com','Contoh','Contoh');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from guestbooks;
++----+-------------------+--------+---------+
+| id | email             | title  | content |
++----+-------------------+--------+---------+
+|  1 | guest@gmail.com   | Hello  | Hello   |
+|  2 | guest2@gmail.com  | Hello  | Hello   |
+|  3 | guest3@gmail.com  | Hello  | Hello   |
+|  4 | adi@gmail.com     | Hello  | Hello   |
+|  5 | adi@gmail.com     | Hello  | Hello   |
+|  6 | adi@gmail.com     | Hello  | Hello   |
+|  7 | contoh@gmail.com  | Contoh | Contoh  |
+|  8 | contoh@gmail.com  | Contoh | Contoh  |
+|  9 | contoh3@gmail.com | Contoh | Contoh  |
++----+-------------------+--------+---------+
+9 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> DELETE FROM guestbooks;
+Query OK, 9 rows affected (0.00 sec)
+
+mysql> select * from guestbooks;
+Empty set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from guestbooks;
++----+-------------------+--------+---------+
+| id | email             | title  | content |
++----+-------------------+--------+---------+
+|  1 | guest@gmail.com   | Hello  | Hello   |
+|  2 | guest2@gmail.com  | Hello  | Hello   |
+|  3 | guest3@gmail.com  | Hello  | Hello   |
+|  4 | adi@gmail.com     | Hello  | Hello   |
+|  5 | adi@gmail.com     | Hello  | Hello   |
+|  6 | adi@gmail.com     | Hello  | Hello   |
+|  7 | contoh@gmail.com  | Contoh | Contoh  |
+|  8 | contoh@gmail.com  | Contoh | Contoh  |
+|  9 | contoh3@gmail.com | Contoh | Contoh  |
++----+-------------------+--------+---------+
+9 rows in set (0.00 sec)
+
+Yang Tidak Bisa Menggunakan Transaction
+Perintah DDL (Data Definition Language) tidak bisa menggunakan fitur transaction
+DDL adalah perintah-perintah yang digunakan untuk merubah struktur, seperti membuat tabel, menambah kolom, menghapus tabel, menghapus database, dan sejenisnya
+Transaction hanya bisa dilakukan pada perintah DML (Data Manipulation Language), seperti operasi INSERT, UPDATE dan DELETE
+
+
 
 
