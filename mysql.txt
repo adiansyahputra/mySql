@@ -1077,7 +1077,12 @@ mysql> select distinct email from customers
 UNION ALL
 UNION ALL adalah operasi yang sama dengan UNION, namun data duplikat tetap akan ditampilkan di hasil query nya
 
+Melakukan Query UNION ALL
+mysql> select email from customers
+    -> union all
+    -> select email from guestbooks;
 
+mysql> select emails.email, count(emails.email) from (select email from customers union all select email from guestbooks) as emails group by emails.email;
 
 
 
