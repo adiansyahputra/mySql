@@ -1632,7 +1632,65 @@ mysql> alter table products
 Query OK, 19 rows affected (31.26 sec)
 Records: 19  Duplicates: 0  Warnings: 0
 
+User Management
 
+Root User
+Secara default, mysql membuat root user sebagai super administrator
+Namun best practice nya, saat kita menjalankan MySQL dengan aplikasi yang kita buat, sangat disarankan tidak menggunakan user root
+Lebih baik kita buat user khusus untuk tiap aplikasi, bahkan kita bisa batasi hak akses user tersebut, seperti hanya bisa melakukan SELECT, dan tidak boleh melakukan INSERT, UPDATE atau DELETE
+
+Hak Akses dan User
+Dalam user management MySQL, kita akan mengenal istilah Hak Akses dari User
+
+Daftar Hak Akses
+Ada banyak sekali hak akses di MySQL
+Kita bisa melihatnya di daftar tabel yang terdapat di halaman berikut :
+https://dev.mysql.com/doc/refman/8.0/en/grant.html 
+
+Membuat/Menghapus User
+mysql> CREATE USER 'adi'@'localhost';
+mysql> CREATE USER 'putra'@'%';
+mysql> DROP USER 'adi'@'localhost';
+mysql> DROP USER 'putra'@'%';
+
+Menambah/Menghapus Hak Akses ke User
+GRANT SELECT ON belajar_mysql.* TO 'adi'@'localhost';
+
+GRANT SELECT ON belajar_mysql.* TO 'putra'@'%';
+GRANT INSERT, UPDATE, DELETE ON belajar_mysql.* TO 'putra'@'%';
+
+SHOW GRANTS FOR 'adi'@'localhost';
+SHOW GRANTS FOR 'putra'@'%';
+
+REVOKE SELECT ON belajar_mysql.* TO 'adi'@'localhost';
+
+Mengubah Password untuk User
+mysql> SET PASSWORD FOR 'adi'@'localhost' = 'rahasia';
+mysql> SET PASSWORD FOR 'putra'@'%' = 'rahasia';
+
+Backup Database
+Saat membuat aplikasi menggunakan database, ada baiknya kita selalu melakukan backup data secara reguler
+Untungnya MySQL mendukung proses backup database
+Untuk melakukan backup database, kita tidak menggunakan perintah SQL, melainkan MySQL menyediakan sebuah aplikasi khusus untuk melakukan backup database, namanya adalah mysqldump
+https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html 
+
+Melakukan Backup Database
+mysqldump belajar_mysql --user root --password --result-file=/Users/adiansyahputra/eko/mySql/belajar_mysql.sql
+Enter password: 
+
+Restore Database
+Selain melakukan backup database, di MySQL juga kita bisa melakukan proses restore data dari file hasil backup
+Untuk melakukan restore database, kita bisa menggunakan aplikasi mysql client atau menggunakan perintah SOURCE di MySQL
+
+Melakukan Import Database
+cara dibuat dulu databasenya lalu keluar baru masukkan folder file
+ mysql --user=root --password belajar_mysql_import < /Users/adiansyahputra/eko/mySql/belajar_mysql.sql
+
+Import Database Menggunakan SQL
+cara dibuat dulu databasenya lalu masuk dan buat deh dengan source
+mysql> create database belajar_mysql_import_source;
+mysql> use belajar_mysql_import_source;
+mysql> source /Users/adiansyahputra/eko/mySql/belajar_mysql.sql 
 
 
 
